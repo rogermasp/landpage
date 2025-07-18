@@ -1,0 +1,314 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0e0000;
+  color: #f8f8f8; /* Cor do texto do corpo alterada para melhor contraste em fundo escuro */
+}
+
+/* --- Estilos do Cabeçalho (Header) --- */
+header {
+  background-color: #222;
+  color: #fff;
+  height: auto; /* Alterado de 300px fixo para auto, mais flexível */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centraliza verticalmente o logo e a navegação */
+  flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+  position: relative;
+  min-height: 80px; /* Garante uma altura mínima para o cabeçalho */
+}
+
+.logo {
+  flex: 1 1 auto; /* Permite que o logo cresça/diminua, ocupa a largura mínima do conteúdo */
+  text-align: left;
+  display: flex; /* Transforma o container do logo em flexbox para centralizar o h1, se necessário */
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 2em;
+  margin: 0; /* Remove a margem padrão */
+  color: #fff; /* Garante que o texto do logo seja branco */
+}
+
+/* Navegação (desktop) */
+nav {
+  display: flex;
+  justify-content: flex-end; /* Alinha os links à direita */
+  gap: 20px; /* Espaçamento entre os links */
+  flex: 1 1 auto; /* Permite que a navegação cresça/diminua */
+  margin-left: auto; /* Empurra a navegação para a direita se houver espaço */
+}
+
+nav a {
+  font-size: 25px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #00bcd4;
+}
+
+/* Botão hambúrguer */
+.menu-toggle {
+  display: none; /* Escondido por padrão no desktop */
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute; /* Posicionamento relativo ao cabeçalho */
+  right: 20px;
+  top: 50%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Ajusta para centralização vertical verdadeira */
+  z-index: 1001; /* Garante que esteja acima de outros conteúdos */
+}
+
+.menu-toggle div {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+/* --- Conteúdo Principal e Cards --- */
+main {
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px - 120px); /* Ajusta com base nas alturas mínimas do cabeçalho/rodapé */
+  background-color: #181717; /* Alterado para melhor contraste com os cards */
+  color: #333; /* Garante que o texto no conteúdo principal seja visível */
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; /* Adicionado espaçamento entre os cards para melhor separação visual */
+  justify-content: center; /* Centraliza os itens da grade */
+  max-width: 1200px; /* Largura máxima para a grade */
+  margin: 0 auto; /* Centraliza a grade na página */
+}
+
+.card {
+  width: 100%; /* Ocupa a largura total da coluna da grade */
+  max-width: 300px; /* Largura máxima para o card individual */
+  height: 300px;
+  background-color: #a5a3a3;
+  border-radius: 8px; /* Adicionado um pouco de border-radius */
+  box-shadow: 0 4px 8px rgba(253, 252, 252, 0.1); /* Adicionada uma sombra sutil */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição mais suave para o hover */
+  margin: 0 auto; /* Garante que o card esteja centralizado dentro da sua célula de grade */
+  color: #333; /* Garante que o texto seja visível no card branco */
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02); /* Leve levantamento e escala no hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra aprimorada no hover */
+  opacity: 1; /* Mantém a opacidade em 1 para melhor visibilidade */
+}
+
+/* --- Ajuste de CSS para Links em Cards --- */
+.card-link {
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    color: inherit; /* Faz com que a cor do texto seja herdada do card (normalmente #333) */
+    display: block; /* Faz com que o link ocupe todo o espaço do card-grid-item */
+    /* Remove a sombra e a transformação de hover da âncora, se existirem */
+    box-shadow: none;
+    transform: none;
+    transition: none; /* Desativa transições na âncora para que apenas o .card reaja */
+}
+
+/* Aplica os efeitos de hover diretamente ao .card quando o .card-link é hoverado */
+.card-link:hover .card {
+    transform: translateY(-5px) scale(1.02); /* Leve levantamento e escala no hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra aprimorada no hover */
+    /* opacity: 1; - Se você tinha isso no .card:hover, pode remover ou manter aqui */
+}
+
+/* Se você tinha a transição no .card, mantenha-a: */
+.card {
+    /* ... (seus estilos existentes para .card) ... */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para os efeitos de hover */
+}
+
+/* --- Estilos do Rodapé (Footer) - Desktop --- */
+footer {
+  display: flex;
+  color: #fff;
+  align-items: center;
+  padding: 20px;
+  background-color: #0e0000;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative; /* Mantido para o posicionamento absoluto de .copy */
+  min-height: 120px; /* Garante uma altura mínima para o rodapé */
+  justify-content: space-between; /* Para empurrar itens para as bordas */
+}
+
+/* Para desktop, ícones sociais são empurrados diretamente para a direita */
+.social {
+  display: flex;
+  margin-left: auto; /* Empurra os ícones sociais para o canto direito */
+  align-items: center; /* Centraliza verticalmente os ícones sociais */
+}
+
+.social img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px; /* Espaçamento entre os ícones */
+  vertical-align: middle;
+}
+
+/* Para desktop, .copy é posicionado absolutamente para centralização verdadeira */
+.copy {
+  text-align: center;
+  position: absolute; /* Posicionamento absoluto para centralização verdadeira */
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  padding: 0 15px; /* Adiciona um pouco de padding para evitar sobreposição com ícones sociais */
+  z-index: 1;
+  top: 50%; /* Centraliza verticalmente o texto de copyright */
+  transform: translate(-50%, -50%); /* Ajusta para centralização horizontal e vertical verdadeira */
+  display: flex; /* Torna-o um container flex para centralizar seu parágrafo */
+  align-items: center; /* Centraliza conteúdo verticalmente */
+  justify-content: center; /* Centraliza conteúdo horizontalmente */
+}
+
+.copy p {
+    margin: 0; /* Remove a margem padrão do parágrafo */
+}
+
+/* --- Ajustes Responsivos --- */
+@media (max-width: 768px) {
+  /* Cabeçalho para mobile */
+  header {
+    height: auto; /* Altura automática para o cabeçalho mobile */
+    flex-direction: column; /* Empilha o logo e a navegação verticalmente */
+    align-items: flex-start; /* Alinha os itens à esquerda na visualização em coluna */
+    padding-bottom: 0; /* Remove o padding inferior para evitar espaço duplo com o menu */
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center; /* Centraliza o texto do logo */
+    margin-bottom: 10px; /* Adiciona algum espaço abaixo do logo */
+  }
+
+  .logo h1 {
+    width: 100%; /* Garante que h1 ocupe toda a largura do container do logo */
+    text-align: center; /* Centraliza o texto WALMART */
+  }
+
+  .menu-toggle {
+    display: flex; /* Mostra o menu hambúrguer no mobile */
+    top: 20px; /* Ajusta a posição relativa ao cabeçalho */
+    right: 20px;
+    transform: none; /* Remove o translateY anterior */
+  }
+
+  nav {
+    display: none; /* Esconde a navegação por padrão */
+    flex-direction: column; /* Empilha os links da navegação verticalmente */
+    width: 100%; /* Navegação ocupa toda a largura */
+    margin-left: 0; /* Remove a margem automática */
+    background-color: #333; /* Adiciona fundo para o menu */
+    padding: 10px 0; /* Padding para os itens do menu */
+    border-radius: 0 0 8px 8px; /* Bordas inferiores arredondadas */
+    position: absolute; /* Posiciona abaixo do cabeçalho */
+    top: 100%; /* Coloca logo abaixo do cabeçalho */
+    left: 0;
+    z-index: 999; /* Garante que o menu esteja acima do conteúdo principal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  nav.active {
+    display: flex; /* Mostra a navegação quando ativa */
+  }
+
+  nav a {
+    margin: 10px 0; /* Espaçamento entre os links da navegação */
+    text-align: center; /* Centraliza os links da navegação */
+    font-size: 20px; /* Ajusta o tamanho da fonte para mobile */
+  }
+
+  /* Conteúdo Principal e Cards para mobile */
+  main {
+    padding: 20px 10px; /* Reduz o padding para telas menores */
+  }
+
+  section {
+    gap: 15px; /* Reduz o espaçamento entre os cards */
+  }
+
+  .card {
+    height: 250px; /* Ajusta a altura do card para mobile */
+    font-size: 0.9em; /* Tamanho de fonte menor para o texto do card */
+    max-width: unset; /* Remove a largura máxima para permitir que os cards preencham o container */
+  }
+
+  /* Rodapé para mobile */
+  footer {
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    padding: 15px; /* Reduz o padding para telas menores */
+    height: auto; /* Permite que a altura se ajuste ao conteúdo */
+    min-height: unset; /* Remove a altura mínima */
+  }
+
+  .social {
+    margin-left: 0; /* Remove o margin-left: auto que empurrava para a direita */
+    justify-content: center; /* Centraliza os ícones horizontalmente */
+    width: 100%; /* Ocupa a largura total para ajudar no centralizamento */
+    order: 1; /* Define a ordem para aparecer primeiro (acima do copyright) */
+    margin-bottom: 10px; /* Espaço entre os ícones e o copyright */
+    flex-wrap: wrap; /* Permite que os ícones quebrem linha se não couberem */
+  }
+
+  .social img {
+    width: 25px; /* Reduz o tamanho dos ícones para mobile */
+    height: 25px;
+    margin: 5px; /* Ajusta o espaçamento entre ícones */
+  }
+
+  .copy {
+    position: static; /* Remove o posicionamento absoluto */
+    transform: none; /* Remove a transformação de centralização */
+    width: 100%; /* Ocupa a largura total disponível */
+    text-align: center; /* Garante que o texto continue centralizado */
+    order: 2; /* Define a ordem para aparecer depois dos ícones */
+    margin-top: 5px; /* Adiciona um pequeno espaço acima do texto */
+    padding: 0; /* Remove qualquer padding lateral desnecessário */
+  }
+
+  .copy p {
+    font-size: 0.9em; /* Reduz o tamanho da fonte */
+  }
+}
+
+/* Opcional: Media Query para telas ainda menores (ex: celulares pequenos) */
+@media (max-width: 480px) {
+    .social img {
+        width: 22px;
+        height: 22px;
+        margin: 3px;
+    }
+    .copy p {
+        font-size: 0.8em;
+    }
+    .card {
+        height: 200px; /* Reduz ainda mais a altura do card */
+    }
+}
